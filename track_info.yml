@@ -1,0 +1,22 @@
+---
+history:
+- reflection
+- reflection
+songlist:
+  0: !ruby/object:Track
+    name: reflection
+    singer: ls
+  1: !ruby/object:Track
+    name: on my own
+    singer: ls
+  2: !ruby/object:Track
+    name: reflection
+    singer: ls
+  3: !ruby/object:Track
+    name: on my own 2
+    singer: ls
+reverseSonglist:
+  reflection: 2
+  on my own: 1
+  on my own 2: 3
+currentTrackID: '4'

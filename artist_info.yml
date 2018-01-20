@@ -1,0 +1,25 @@
+---
+directory:
+  ls: !ruby/object:Artist
+    name: lea salonga
+    songs:
+    - !ruby/object:Track
+      name: reflection
+      singer: ls
+    - !ruby/object:Track
+      name: on my own
+      singer: ls
+    - !ruby/object:Track
+      name: reflection
+      singer: ls
+    - !ruby/object:Track
+      name: on my own 2
+      singer: ls
+    id: ls
+  js: !ruby/object:Artist
+    name: john smith
+    songs: []
+    id: js
+reverseDirectory:
+  lea salonga: ls
+  john smith: js
