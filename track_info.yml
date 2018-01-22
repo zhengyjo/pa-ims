@@ -1,22 +1,20 @@
 ---
 history:
-- reflection
-- reflection
-songlist:
+- stay with me
+- da yu hai tang
+- hero
+song_list:
   0: !ruby/object:Track
-    name: reflection
-    singer: ls
+    name: stay with me
+    singer: ss
   1: !ruby/object:Track
-    name: on my own
-    singer: ls
+    name: da yu hai tang
+    singer: zs
   2: !ruby/object:Track
-    name: reflection
-    singer: ls
-  3: !ruby/object:Track
-    name: on my own 2
-    singer: ls
-reverseSonglist:
-  reflection: 2
-  on my own: 1
-  on my own 2: 3
-currentTrackID: '4'
+    name: hero
+    singer: mc
+reverse_song_list:
+  stay with me: 0
+  da yu hai tang: 1
+  hero: 2
+currentTrackID: '3'

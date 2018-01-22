@@ -4,18 +4,18 @@ require './artist.rb'
 require './track.rb'
 
 class WareHouse
-  attr_accessor :artist_info_file, :track_info_file, :track_num, :directory, :reverseDirectory, :songlist,:reverseSonglist,:history, :track_num
+  attr_accessor :artist_info_file, :track_info_file, :track_num, :directory, :reverse_directory, :song_list,:reverse_song_list,:history, :track_num
 
   def initialize(artist_info, track_info)
     @artist_info_file = YAML::Store.new(artist_info)
     self.artist_info_file.transaction do
       @directory = self.artist_info_file["directory"]
-      @reverseDirectory = self.artist_info_file["reverseDirectory"]
+      @reverse_directory = self.artist_info_file["reverse_directory"]
     end
     @track_info_file = YAML::Store.new(track_info)
     self.track_info_file.transaction do
-      @songlist = self.track_info_file["songlist"]
-      @reverseSonglist = self.track_info_file["reverseSonglist"]
+      @song_list = self.track_info_file["song_list"]
+      @reverse_song_list = self.track_info_file["reverse_song_list"]
       @history = self.track_info_file["history"]
       @track_num = self.track_info_file["currentTrackID"].to_i
     end
@@ -23,11 +23,13 @@ class WareHouse
   end
 
   def add_artist(person)
-    if(!self.reverseDirectory.key?(person.name))
+    if(!self.reverse_directory.key?(person.name))
       initials = generate_id(person.name)
       person.id = initials
       directory[initials] = person
-      reverseDirectory[person.name] = initials
+      reverse_directory[person.name] = initials
+    else
+      puts "This artist has already existed"
     end
   end
 
@@ -46,13 +48,13 @@ class WareHouse
   end
 
   def add_song_to_warehouse(song)
-    if(!self.reverseSonglist.key?(song.name))
-      self.songlist[self.track_num] = song
-      self.reverseSonglist[song.name] = self.track_num
+    if(!self.reverse_song_list.key?(song.name))
+      self.song_list[self.track_num] = song
+      self.reverse_song_list[song.name] = self.track_num
       self.track_num = self.track_num + 1
       self.directory[song.singer].add_song(song)
     else
-      puts "This song already existed"
+      puts "This song has already existed"
     end
   end
 
@@ -64,7 +66,7 @@ class WareHouse
   end
 
   def get_track_list
-    return songlist
+    return song_list
   end
 
   def get_artist_list
@@ -77,12 +79,12 @@ class WareHouse
 
   def put_back
     self.artist_info_file.transaction do
-      self.artist_info_file["reverseDirectory"] = reverseDirectory
+      self.artist_info_file["reverse_directory"] = reverse_directory
       self.artist_info_file["directory"] = directory
     end
     self.track_info_file.transaction do
-      self.track_info_file["songlist"] = songlist
-      self.track_info_file["reverseSonglist"] = reverseSonglist
+      self.track_info_file["song_list"] = song_list
+      self.track_info_file["reverse_song_list"] = reverse_song_list
       self.track_info_file["history"] = history
       self.track_info_file["currentTrackID"] = track_num.to_s
     end

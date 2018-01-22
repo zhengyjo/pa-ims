@@ -1,4 +1,5 @@
 require './track.rb'
+require 'set'
 
 class Artist
   attr_accessor :name
@@ -8,7 +9,7 @@ class Artist
   def initialize(name)
     @name = name.downcase
     #@initials = initials
-    @songs = []
+    @songs = [].to_set
   end
 
   def to_s
@@ -25,18 +26,6 @@ class Artist
     for song in self.songs
       puts song.name
     end
-  end
-
-  def name
-    @name
-  end
-
-  def id
-    @id
-  end
-
-  def songs
-    @songs
   end
 
 end

@@ -21,7 +21,7 @@ class IMS
       store_a = YAML::Store.new(artist_info)
       store_a.transaction do
         store_a["directory"] = {}
-        store_a["reverseDirectory"] = {}
+        store_a["reverse_directory"] = {}
       end
     end
   end
@@ -32,27 +32,30 @@ class IMS
       store = YAML::Store.new(track_info)
       store.transaction do
         store["history"] = []
-        store["songlist"] = {}
-        store["reverseSonglist"] = {}
+        store["song_list"] = {}
+        store["reverse_song_list"] = {}
       end
     end
   end
 
   def start
-    prompt = 'ims>'
+    prompt = '>'
     print prompt
     input = $stdin.gets.chomp.downcase
+    keywords = ["add","info","help","list","count","play"]
 
     while input != 'exit'
-      if(input.split[0] != 'info' && input.split[0] != 'help' && input.split[0] != 'add'&& input.split[0] != 'play' && input.split[0] != 'count' && input.split[0] != 'list')
-        puts "Invalid statement. Please try again!"
+      keyword = input.split[0]
+      if keywords.include? keyword
+        self.dj_manager.public_send(keyword, input.downcase.split)
+        dj_manager.store_back
       else
-        #puts"#{dj_manager.class}"
-        self.dj_manager.process(input)
+        puts "ERROR"
       end
       print prompt
       input = $stdin.gets.chomp.downcase
     end
+    puts "save state and exit"
     dj_manager.store_back
   end
 

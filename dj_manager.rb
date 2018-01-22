@@ -1,6 +1,8 @@
 require './artist.rb'
 require './track.rb'
 require './dj_warehouse.rb'
+require './add_department.rb'
+require './info_department.rb'
 
 class Manager
   attr_accessor :warehouse
@@ -9,25 +11,14 @@ class Manager
     @warehouse = warehouse
   end
 
-  def to_s
-    "This is a test."
+  def add(input_arr)
+    add_dept = AddDepartment.new(self.warehouse)
+    add_dept.add(input_arr)
   end
 
-  def process(input)
-    input_arr = input.downcase.split;
-    if(input_arr[0] == 'help')
-      help(input_arr)
-    elsif(input_arr[0] == 'add')
-      add(input_arr)
-    elsif(input_arr[0] == 'info')
-      info(input_arr)
-    elsif(input_arr[0] == 'play')
-      play(input_arr)
-    elsif(input_arr[0] == 'count')
-      count(input_arr)
-    elsif(input_arr[0] == 'list')
-      list(input_arr)
-    end
+  def info(input_arr)
+    info_dept = InfoDepartment.new(self.warehouse)
+    info_dept.info(input_arr)
   end
 
   def help(input_arr)
@@ -49,74 +40,13 @@ class Manager
       end
   end
 
-  def add(input_arr)
-    if(input_arr[1] == 'artist')
-      add_artist(input_arr)
-    elsif(input_arr[1] == 'track')
-      add_song(input_arr)
-    end
-  end
-
-  def add_artist(input_arr)
-    len = input_arr.count
-    singer_name = input_arr[2,len - 1] * " "
-    singer = Artist.new(singer_name)
-    warehouse.add_artist(singer)
-  end
-
-  def add_song(input_arr)
-    sep = input_arr.index('/')
-    if(sep != nil)
-      song_name = input_arr[2,sep - 2] * " "
-      len = input_arr.count
-      singer_name = input_arr[sep + 1,len - sep - 1] * ""
-      song = Track.new(song_name,singer_name)
-      self.warehouse.add_song_to_warehouse(song)
-    else
-      puts "Invalid statement of adding track. Please use \'/\'"
-    end
-  end
-
-  def info(input_arr)
-    if(input_arr.length != 1 && input_arr.length != 3)
-      puts "Invalid info statement. Please refer to the help"
-    elsif
-      history = warehouse.get_history_list
-      tracks = warehouse.get_track_list
-      artists = warehouse.get_artist_list
-      if(input_arr.length == 1)
-        puts "The last song(s) played (up to last 3) are #{history}. The total number of track is #{tracks.length}. The total number of singer is #{artists.length}"
-      elsif(input_arr[1] == 'track')
-        info_song(input_arr,tracks)
-      elsif(input_arr[1] == 'artist')
-        info_artist(input_arr,artists)
-      end
-    end
-  end
-
-  def info_song(input_arr,tracks)
-    if(input_arr[2].to_i < tracks.length && input_arr[2].to_i >= 0)
-      puts tracks[input_arr[2].to_i]
-    else
-      puts "Invalid track number"
-    end
-  end
-
-  def info_artist(input_arr,artist)
-    if(artist.key?(input_arr[2]))
-      puts artist[input_arr[2]]
-    else
-      puts "Invalid artist id"
-    end
-  end
-
   def play(input_arr)
     history = warehouse.get_history_list
     tracks = warehouse.get_track_list
     if(input_arr.length > 3 || input_arr[1] != 'track' || input_arr[2].to_i >= tracks.length || input_arr[2].to_i < 0)
       puts "Invalid play statement. Please refer Help"
     else
-      puts tracks[input_arr[2].to_i].name
+      puts "Now it is playing #{tracks[input_arr[2].to_i].name}."
       warehouse.add_history(tracks[input_arr[2].to_i].name)
     end
   end

@@ -1,0 +1,42 @@
+Zhengyangs-MacBook-Pro-2:pa-ims zhengyangzhou$ ruby ims.rb
+>help
+
+        Help - display a simple help screen. This is a text message, multi line, that explains the available commands. Sort of like this list.
+        Exit - save state and exit. The effect of this is that when the app is run again, it is back to exactly where it was when you exited. What this amounts to is basically to make sure the tracks and artists and their info have all been saved.
+        Info - display a high level summary of the state. At minimum, the last 3 tracks played, and a count of the total number of tracks and the total number of artists. You can elaborate if you want.
+        Info track - Display info about a certain track by number. e.g. info track 13
+        Info artist - Display info about a certain artist, by id. e.g. info artist jo
+        Add Artist - Adds a new artist to storage and assign an artist id. Default artist id is the initials of the artist. If this is ambiguous then another id is automatically assigned and displayed. e.g. add artist john osborne
+        Add Track - Add a new track to storage. add track watching the sky turn green / jo
+        Play Track - Record that an existing track was played at the current time, e.g. play track 13.
+        Count tracks - Display how many tracks are known by a certain artist, e.g. count tracks by jo
+        List tracks - Display the tracks played by a certain artist, e.g. list tracks by jo
+
+>info
+The last song(s) played (up to last 3) are ["stay with me", "da yu hai tang"]. The total number of track is 2. The total number of singer is 2
+>info track 0
+The name of this track is stay with me. It is sung by ss
+>info artist ss
+The name of id ss is sam smith.
+>add artist mariah carey
+>add track hero / mc
+>play track 0
+Now it is playing stay with me.
+>play track 1
+Now it is playing da yu hai tang.
+>play track 2
+Now it is playing hero.
+>info
+The last song(s) played (up to last 3) are ["stay with me", "da yu hai tang", "hero"]. The total number of track is 3. The total number of singer is 3
+>count tracks by mc
+The number of songs from this artist is 1
+>list tracks by mc
+The song list of this artist is
+hero
+>exit
+save state and exit
+Zhengyangs-MacBook-Pro-2:pa-ims zhengyangzhou$ ruby ims.rb
+>info
+The last song(s) played (up to last 3) are ["stay with me", "da yu hai tang", "hero"]. The total number of track is 3. The total number of singer is 3
+>exit
+save state and exit

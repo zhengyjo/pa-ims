@@ -11,12 +11,4 @@ class Track
     "The name of this track is #{name}. It is sung by #{singer}"
   end
 
-  def name
-    @name
-  end
-
-  def singer
-    @singer
-  end
-
 end
