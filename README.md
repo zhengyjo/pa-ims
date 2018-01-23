@@ -27,6 +27,7 @@ There are three parts: the ims (driver class containing the loop), the manager t
         Though PStore is much quicker, but it is not readable. So I pick YAML instead.
         3.	Add a search function to make the system more user friendly
         According to the problem prompt, the info function is to retrieve the information of a song by track number and an artist by id. However, the user does not necessarily know the corresponding track number or id. So I add a function called search to enable user to search the track or artist by name.
+        4.      When coding for the add track method, since names of songs can contain the word "by", I used '/' as delimiter instead.
 
 ## Command introduction:
         Help - display a simple help screen. This is a text message, multi line, that explains the available commands. Sort of like this list.
