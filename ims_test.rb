@@ -2,7 +2,7 @@ require "minitest/autorun"
 require 'o_stream_catcher'
 require_relative "dj_manager.rb"
 
-
+#Test all the functions.
 describe Manager do
   def artist_info_check(artist_info)
     if(!File.exists?(artist_info))
@@ -57,6 +57,8 @@ describe Manager do
         Play Track - Record that an existing track was played at the current time, e.g. play track 13.
         Count tracks - Display how many tracks are known by a certain artist, e.g. count tracks by jo
         List tracks - Display the tracks played by a certain artist, e.g. list tracks by jo
+        Search track - Display the track number by the track name, e.g search track my heart will go on
+        Search artist - Display the artist id by the artist name, e.g search artist celine dion
         }
     end
 
@@ -117,7 +119,7 @@ describe Manager do
     result, stdout, stderr = OStreamCatcher.catch do
       @dj_manager.info(input.downcase.split)
     end
-    correct_words = "The name of this track is stay with me. It is sung by ss\n"
+    correct_words = "The name of this track is stay with me. It is sung by ss.\n"
     stdout.must_equal correct_words
   end
 
@@ -154,6 +156,17 @@ describe Manager do
       @dj_manager.play(input.downcase.split)
     end
     correct_words = "Now it is playing stay with me.\n"
+    stdout.must_equal correct_words
+  end
+
+  it "can search the artist" do
+    input = "add artist celine dion"
+    @dj_manager.add(input.downcase.split)
+    input = "search artist celine dion"
+    result, stdout, stderr = OStreamCatcher.catch do
+      @dj_manager.search(input.downcase.split)
+    end
+    correct_words = "cd\n"
     stdout.must_equal correct_words
   end
 

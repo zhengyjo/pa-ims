@@ -21,7 +21,27 @@ directory:
       name: hero
       singer: mc
     id: mc
+  wh: !ruby/object:Artist
+    name: whitney houston
+    songs: !ruby/object:Set
+      hash:
+        ? !ruby/object:Track
+          name: i have nothing
+          singer: wh
+        : true
+    id: wh
+  cd: !ruby/object:Artist
+    name: celine dion
+    songs: !ruby/object:Set
+      hash:
+        ? !ruby/object:Track
+          name: my heart will go on
+          singer: cd
+        : true
+    id: cd
 reverse_directory:
   sam smith: ss
   zhou shen: zs
   mariah carey: mc
+  whitney houston: wh
+  celine dion: cd

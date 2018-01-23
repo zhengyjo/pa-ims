@@ -11,6 +11,8 @@ Zhengyangs-MacBook-Pro-2:pa-ims zhengyangzhou$ ruby ims.rb
         Play Track - Record that an existing track was played at the current time, e.g. play track 13.
         Count tracks - Display how many tracks are known by a certain artist, e.g. count tracks by jo
         List tracks - Display the tracks played by a certain artist, e.g. list tracks by jo
+        Search track - Display the track number by the track name, e.g search track my heart will go on
+        Search artist - Display the artist id by the artist name, e.g search artist celine dion
 
 >info
 The last song(s) played (up to last 3) are ["stay with me", "da yu hai tang"]. The total number of track is 2. The total number of singer is 2
@@ -20,6 +22,10 @@ The name of this track is stay with me. It is sung by ss
 The name of id ss is sam smith.
 >add artist mariah carey
 >add track hero / mc
+>search track da yu hai tang
+1
+>search artist mariah carey
+mc
 >play track 0
 Now it is playing stay with me.
 >play track 1

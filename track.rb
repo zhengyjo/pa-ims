@@ -1,3 +1,4 @@
+#Track object with attritube name and the singer's initials.
 class Track
   attr_accessor :name
   attr_accessor :singer
@@ -8,7 +9,7 @@ class Track
   end
 
   def to_s
-    "The name of this track is #{name}. It is sung by #{singer}"
+    "The name of this track is #{name}. It is sung by #{singer}."
   end
 
 end

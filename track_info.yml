@@ -1,8 +1,8 @@
 ---
 history:
-- stay with me
 - da yu hai tang
 - hero
+- i have nothing
 song_list:
   0: !ruby/object:Track
     name: stay with me
@@ -13,8 +13,16 @@ song_list:
   2: !ruby/object:Track
     name: hero
     singer: mc
+  3: !ruby/object:Track
+    name: i have nothing
+    singer: wh
+  4: !ruby/object:Track
+    name: my heart will go on
+    singer: cd
 reverse_song_list:
   stay with me: 0
   da yu hai tang: 1
   hero: 2
-currentTrackID: '3'
+  i have nothing: 3
+  my heart will go on: 4
+currentTrackID: '5'
